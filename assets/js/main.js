@@ -79,13 +79,9 @@ function scrollActive() {
       sectionId = current.getAttribute("id");
 
     if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      document
-        .querySelector(".nav__menu a[href*=" + sectionId + "]")
-        .classList.add("active-link");
+      document.querySelector(".nav__menu a[href*=" + sectionId + "]").classList.add("active-link");
     } else {
-      document
-        .querySelector(".nav__menu a[href*=" + sectionId + "]")
-        .classList.remove("active-link");
+      document.querySelector(".nav__menu a[href*=" + sectionId + "]").classList.remove("active-link");
     }
   });
 }
@@ -100,20 +96,14 @@ const selectedTheme = localStorage.getItem("selected-theme");
 const selectedIcon = localStorage.getItem("selected-icon");
 
 //obtain current theme that has interface by validating light theme class in html
-const getCurrentTheme = () =>
-  document.body.classList.contains(lightTheme) ? "dark" : "light";
-const getCurrentIcon = () =>
-  document.body.classList.contains(iconTheme) ? "bx bx-moon" : "bx bx-sun";
+const getCurrentTheme = () => (document.body.classList.contains(lightTheme) ? "dark" : "light");
+const getCurrentIcon = () => (document.body.classList.contains(iconTheme) ? "bx bx-moon" : "bx bx-sun");
 
 //validate if user change theme light or dark theme
 if (selectedTheme) {
   //if fullfilled, change theme mode
-  document.body.classList[selectedTheme === "dark" ? "add" : "remove"](
-    lightTheme
-  );
-  themeButton.classList[selectedIcon === "bx bx-moon" ? "add" : "remove"](
-    iconTheme
-  );
+  document.body.classList[selectedTheme === "dark" ? "add" : "remove"](lightTheme);
+  themeButton.classList[selectedIcon === "bx bx-moon" ? "add" : "remove"](iconTheme);
 }
 
 //activate or deactivate manually with theme button
@@ -138,3 +128,45 @@ sr.reveal(`.home__data`);
 sr.reveal(`.home__handle`, { delay: 700 });
 sr.reveal(`.home__social, .home__scroll`, { delay: 900, origin: "bottom" });
 /*=============== EMAIL JS ===============*/
+
+const contactForm = document.getElementById("contact-form"),
+  contactName = document.getElementById("contact-name"),
+  contactEmail = document.getElementById("contact-email"),
+  contactProject = document.getElementById("contact-project"),
+  contactMessage = document.getElementById("contact-message");
+
+const sendEmail = (e) => {
+  e.preventDefault();
+  //check if field has value
+  if (contactName.value === "" || contactEmail.value === "" || contactProject.value === "") {
+    //add and remove color
+    contactMessage.classList.remove("color-blue");
+    contactMessage.classList.add("color-red");
+
+    //show message if field is empty
+    contactMessage.textContent = "Please write all input fields 📩";
+  } else {
+    // serviceID - templateID - #form - publicKey
+    emailjs.sendForm("service_6qyd1nd", "template_63cm2hp", "#contact-form", "LQKkYzzjesrNhyg-I").then(
+      () => {
+        //Show message add color
+        contactMessage.classList.add("color-blue");
+        contactMessage.textContent = "Message sent successfully ✅";
+
+        //remove message after 5 seconds
+        setTimeout(() => {
+          contactMessage.textContent = "";
+        }, 5000);
+      },
+      (error) => {
+        alert("OOPS, Something went wrong...", error);
+      }
+    );
+
+    //clear input fields
+    contactName.value = "";
+    contactEmail.value = "";
+    contactProject.value = "";
+  }
+};
+contactForm.addEventListener("submit", sendEmail);
