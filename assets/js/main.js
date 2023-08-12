@@ -75,3 +75,36 @@ themeButton.addEventListener("click", () => {
   localStorage.setItem("selected-theme", getCurrentTheme());
   localStorage.setItem("selected-icon", getCurrentIcon());
 });
+
+/*=============== SCROLL REVEAL ANIMATION ===============*/
+const sr = ScrollReveal({
+  origin: "top",
+  distance: "60px",
+  duration: 3000,
+  delay: 300,
+  // reset: true,
+});
+//TITLE
+sr.reveal(`.section__subtitle`);
+sr.reveal(`.section__title`);
+
+// HOME
+sr.reveal(`.home__data`);
+sr.reveal(`.home__handle`, { delay: 700 });
+sr.reveal(`.home__social, .home__scroll`, { delay: 900, origin: "bottom" });
+
+//ABOUT
+sr.reveal(`.about__img`);
+sr.reveal(`.about__description`, { delay: 300 });
+sr.reveal(`.button`, { delay: 500 });
+
+//SKILLS
+sr.reveal(`.skills__content`, { delay: 400 });
+
+//CERTIFICATES
+sr.reveal(`.certificate__container`, { interval: 400 });
+//PORTFOLIO
+sr.reveal(`.work__filters`, { interval: 400 });
+sr.reveal(`.work__container`, { interval: 400 });
+//CONTACT
+sr.reveal(`.contact__container`, { interval: 500 });
