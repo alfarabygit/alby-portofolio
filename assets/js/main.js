@@ -94,15 +94,15 @@ sr.reveal(`.home__handle`, { delay: 700 });
 sr.reveal(`.home__social, .home__scroll`, { delay: 900, origin: "bottom" });
 
 //ABOUT
-sr.reveal(`.about__img`);
-sr.reveal(`.about__description`, { delay: 300 });
+sr.reveal(`.about__img`, { origin: "left" });
+sr.reveal(`.about__description`, { delay: 300, origin: "right" });
 sr.reveal(`.button`, { delay: 500 });
 
 //SKILLS
-sr.reveal(`.skills__content`, { delay: 400 });
+sr.reveal(`.skills__content`, { delay: 400, origin: "up" });
 
 //CERTIFICATES
-sr.reveal(`.certificate__container`, { interval: 400 });
+sr.reveal(`.certificate__container`, { interval: 400, origin: "bottom" });
 //PORTFOLIO
 sr.reveal(`.work__filters`, { interval: 400 });
 sr.reveal(`.work__container`, { interval: 400 });
