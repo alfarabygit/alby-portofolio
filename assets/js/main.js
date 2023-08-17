@@ -105,6 +105,6 @@ sr.reveal(`.skills__content`, { delay: 400, origin: "up" });
 sr.reveal(`.certificate__container`, { interval: 400, origin: "bottom" });
 //PORTFOLIO
 sr.reveal(`.work__filters`, { interval: 400 });
-sr.reveal(`.work__container`, { interval: 400 });
+sr.reveal(`.work__container`, { interval: 400, origin: "bottom" });
 //CONTACT
 sr.reveal(`.contact__container`, { interval: 500 });
